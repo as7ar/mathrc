@@ -1,5 +1,5 @@
 use std::string::ToString;
-use crate::Math;
+use crate::{parser, Math};
 
 impl Math {
     pub const PI: f64 = std::f64::consts::PI;
@@ -99,6 +99,13 @@ impl Math {
         if d == 1 { return format!("{}{}", sign, n); }
         format!("{}{}/{}", sign, n, d)
     }
+
+    pub fn calc(input: &str) -> Option<f64> {
+        let tokens = parser::tokenizer::tokenize(input)?;
+        let mut p = parser::parser::Parser::new(tokens);
+        let ast = p.parse()?;
+        parser::evaluator::evaluate(&ast)
+    }
 }
 
 #[cfg(test)]
@@ -108,6 +115,8 @@ mod test {
     #[test]
     fn test() {
 
-        println!("{}", Math::add(12, 21).to_string()); // 33
+        // println!("{}", Math::add(12, 21).to_string()); // 33
+
+        println!("{}", Math::calc("2+3").unwrap())
     }
 }
