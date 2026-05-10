@@ -1,6 +1,8 @@
-pub mod operation;
-mod function;
+extern crate core;
+
+pub mod calculator;
+pub(crate) mod function;
 pub mod parser;
 mod vector;
-
-pub struct Math;
+mod math;
+mod frac;

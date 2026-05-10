@@ -1,3 +1,3 @@
-pub mod tokenizer;
+pub(crate) mod tokenizer;
 pub mod parser;
-pub mod evaluator;
+pub(crate) mod evaluator;

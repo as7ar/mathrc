@@ -1,4 +1,5 @@
-use crate::Math;
+use crate::calculator::Calculator;
+use crate::math::Math;
 
 pub struct Trigonometric;
 
@@ -10,11 +11,11 @@ impl Trigonometric {
 
     #[deprecated]
     pub fn rad_to_string<T: Into<f64>>(a: T) -> String {
-        format!("{}*π", Math::dec_to_frac(Math::div(a.into(), Math::PI)))
+        format!("{}*π", Calculator::dec_to_frac(Math::div(a.into(), Math::PI)))
     }
 }
 
-/*#[cfg(test)]
+#[cfg(test)]
 mod test {
     use crate::function::trigonometric::Trigonometric;
 
@@ -22,4 +23,4 @@ mod test {
     fn deg2rad() {
         println!("{}", Trigonometric::rad_to_string(Trigonometric::deg_to_rad(60)))
     }
-}*/
+}
