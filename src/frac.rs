@@ -50,5 +50,17 @@ impl Frac {
         Self { num, den }.normalize()
     }
 
-    //todo: div/mul
+    pub fn mul(self, other: Self) -> Self {
+        let num = self.num * other.num;
+        let den = self.den * other.den;
+
+        Self { num, den }.normalize()
+    }
+
+    pub fn div(self, other: Self) -> Self {
+        let num = self.num * other.den;
+        let den = self.den * other.num;
+
+        Self { num, den }.normalize()
+    }
 }
