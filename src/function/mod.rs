@@ -1,2 +1,2 @@
 pub mod trigonometric;
-mod function;
+pub mod function;

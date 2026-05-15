@@ -6,7 +6,7 @@ edition = "2024"
 readme = "README.md"
 license-file = "LICENSE"
 keywords = ["math", "mathematics"]
-homepage = "https://onsaenaro.site"
+homepage = "https://mathrc.onsaenaro.site"
 repository = "https://github.com/as7ar/mathrc"
 
 [dependencies]

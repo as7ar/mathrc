@@ -4,5 +4,5 @@ pub mod calculator;
 pub(crate) mod function;
 pub mod parser;
 mod vector;
-mod math;
-mod calc;
+pub mod math;
+pub mod calc;
