@@ -1,6 +1,6 @@
 # MathRC
 [![CI](https://github.com/as7ar/mathrc/actions/workflows/rust.yml/badge.svg)](https://github.com/as7ar/mathrc/actions/workflows/rust.yml)
-[[![Crates.io](https://img.shields.io/crates/v/mathrc.svg)](https://crates.io/crates/mathrc)](https://img.shields.io/crates/v/mathrc)
+[![Crates.io](https://img.shields.io/crates/v/mathrc.svg)](https://crates.io/crates/mathrc)
 [![Docs.rs](https://docs.rs/mathrc/badge.svg)](https://docs.rs/mathrc)
 [![Downloads](https://img.shields.io/crates/d/mathrc.svg)](https://crates.io/crates/mathrc)
 [![Rust](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
