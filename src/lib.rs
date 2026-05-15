@@ -5,4 +5,4 @@ pub(crate) mod function;
 pub mod parser;
 mod vector;
 mod math;
-mod frac;
+mod calc;

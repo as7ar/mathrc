@@ -11,7 +11,7 @@ impl Trigonometric {
 
     #[deprecated]
     pub fn rad_to_string<T: Into<f64>>(a: T) -> String {
-        format!("{}*π", Calculator::dec_to_frac(Math::div(a.into(), Math::PI)))
+        format!("{}π", Calculator::dec_to_frac(Math::div(a.into(), Math::PI)))
     }
 }
 

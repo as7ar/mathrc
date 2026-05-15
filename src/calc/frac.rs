@@ -10,6 +10,10 @@ impl Frac {
         Self { num, den }
     }
 
+    pub fn to_dec(self) -> f64 {
+        (self.num / self.den) as f64
+    }
+
     pub fn normalize(mut self) -> Self {
         if self.num==0 {
             return Self { num:0, den: 1 };
