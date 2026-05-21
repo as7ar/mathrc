@@ -76,4 +76,11 @@ impl Math {
 
         (a / Self::gcd(a, b)) * b
     }
+
+    pub fn factorial(self, n: i64) -> i64 {
+        if n <= 1 {
+            return 1;
+        }
+        n * self.factorial(n - 1)
+    }
 }
