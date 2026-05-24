@@ -2,7 +2,7 @@
 name = "mathrc"
 description = "Rust Mathematics Library"
 version = "0.2.0"
-edition = "2024"
+edition = "2021"
 readme = "README.md"
 license = "GPL-3"
 license-file = "LICENSE"
