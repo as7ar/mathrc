@@ -46,16 +46,16 @@ mod test {
 
     #[test]
     fn function() {
-        let f = Func::new(|x| x.log(10.0));
+        let f = Func::new(|x| x.powi(2));
 
-        println!("{}", f.call(100.0));
+        println!("{}", f.call(10.0));
 
-        let d = f.derivative();
+        /*let d = f.derivative();
 
-        println!("{}", d.call(100.0));
+        println!("{}", d.call(100.0));*/
 
-        let i = Func::new(|x| x.log(10.0)).integral();
+        let i = f.integral();
 
-        println!("{}", i.call(100.0));
+        println!("{}", i.call(10.0));
     }
 }

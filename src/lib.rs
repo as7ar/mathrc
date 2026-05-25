@@ -6,4 +6,6 @@ pub mod parser;
 mod vector;
 pub mod math;
 pub mod calc;
-mod sequence;
+pub mod sequence;
+pub mod set;
+mod matrix;

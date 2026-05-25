@@ -1,11 +1,10 @@
 [package]
 name = "mathrc"
 description = "Rust Mathematics Library"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 readme = "README.md"
-license = "GPL-3.0" # Why 3.0 not 3 Lol
-license-file = "LICENSE"
+license = "GPL-3.0"
 keywords = ["math", "mathematics"]
 homepage = "https://mathrc.onsaenaro.site"
 repository = "https://github.com/as7ar/mathrc"
