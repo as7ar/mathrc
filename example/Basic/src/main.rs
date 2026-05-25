@@ -1,3 +1,4 @@
+use mathrc::calc::frac::Frac;
 use mathrc::math::Math;
 
 fn main() {
@@ -8,4 +9,7 @@ fn main() {
 
     println!("e = {}", Math::E); // 2.718...
     println!("PI = {}", Math::PI); // 3.14...
+
+    let frac = Frac::new(2, 4).unwrap();
+    println!("1/2={}", frac.normalize()) // 1/2
 }

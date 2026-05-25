@@ -6,5 +6,5 @@ fn main() {
     println!("f(2)={}", f.call(2f64));
 
     println!("f'(2)={}", f.clone().derivative().call(2f64));
-    println!("f'(2)={}", f.clone().derivative().call(2f64))
+    println!("F(2)={}", f.clone().derivative().call(2f64))
 }

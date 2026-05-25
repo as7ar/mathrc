@@ -138,8 +138,9 @@ checksum = "616ec5685824bcc94416c6d4a7a446eea774a31efd7062c8480ba6fd06d7a6e5"
 
 [[package]]
 name = "mathrc"
-version = "0.2.1"
-source = "git+https://github.com/as7ar/mathrc#a5dea2623cd8ff3728c380abc2aba0c2de646bf5"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03aa18df1403b3f15eb42728ce31d0f0065cc91c937801d298a7e175c2e6a118"
 dependencies = [
  "rand",
 ]

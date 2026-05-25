@@ -1,8 +1,15 @@
 use crate::math::Math;
+use std::fmt;
 
 pub struct Frac {
     pub num: i64,
     pub den: i64,
+}
+
+impl fmt::Display for Frac {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}/{}", self.num, self.den)
+    }
 }
 
 impl Frac {
