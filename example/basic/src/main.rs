@@ -10,9 +10,9 @@ fn main() {
     println!("e = {}", Math::E); // 2.718...
     println!("PI = {}", Math::PI); // 3.14...
 
-    let mut frac = Frac::new(2, 4).unwrap();
+    let frac = Frac::new(2, 4).unwrap();
     println!("1/2={}", frac.normalize()); // 1/2
 
-    let rev_frac = frac.reverse().unwrap();
+    let rev_frac = frac.reverse().unwrap(); // Use of moved value: `frac`
     println!("2={}", rev_frac)
 }

@@ -27,22 +27,14 @@ impl Frac {
         (self.num / self.den) as f64
     }
 
-    pub fn normalize(&mut self) -> Self {
-        if self.num==0 {
-            return Self { num:0, den: 1 };
-        }
+    pub fn normalize(&self) -> Self {
+        if self.num==0 { return Self { num:0, den: 1 }; }
 
-        if self.den < 0 {
-            self.num = -self.num;
-            self.den = -self.den;
-        }
+        let (num, den) = if self.den < 0 { (-self.num, -self.den)
+        } else { (self.num, self.den) };
+        let gcd = Math::gcd(den, num);
 
-        let gcd = Math::gcd(self.den, self.num);
-
-        Self {
-            num: self.num / gcd,
-            den: self.den / gcd
-        }
+        Self { num: num / gcd, den: den / gcd }
     }
 
     pub fn reverse(&self) -> Result<Self, String> {
@@ -79,5 +71,19 @@ impl Frac {
         let den = self.den * other.num;
 
         Self { num, den }.normalize()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use crate::calc::frac::Frac;
+
+    #[test]
+    fn main() {
+        let frac = Frac::new(2, 4).unwrap();
+        println!("1/2={}", frac.normalize()); // 1/2
+
+        let rev_frac = frac.reverse().unwrap(); // Use of moved value: `frac`
+        println!("2={}", rev_frac)
     }
 }

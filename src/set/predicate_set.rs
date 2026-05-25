@@ -12,7 +12,7 @@ impl<T> PredicateSet<T> where T: Fn(f64) -> bool {
         (self.condition)(n)
     }
 
-    pub fn is_subset(&self, other: Self) -> bool {
+    pub fn is_subset(&self, _other: Self) -> bool {
         // todo: Q.E.D.
         false
     }
