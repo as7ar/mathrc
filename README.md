@@ -27,3 +27,8 @@ MathRC is currently in early development. APIs may change as the library grows.
 ## License
 
 This project is licensed under the GPL-3.0 license.
+
+## Change Log
+### Fixed
+1. Fixed the issue where variables moved after Frac normalization
+2. Fixed the issue where variables moved after Func derivative/integral
