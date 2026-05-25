@@ -1,6 +1,7 @@
 use crate::math::Math;
 use std::fmt;
 
+#[derive(Clone, PartialEq)]
 pub struct Frac {
     pub num: i64,
     pub den: i64,
@@ -8,6 +9,8 @@ pub struct Frac {
 
 impl fmt::Display for Frac {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        if self.den==1 { return write!(f, "{}", self.num) }
+        if self.num==0 { return write!(f, "0") }
         write!(f, "{}/{}", self.num, self.den)
     }
 }
@@ -47,7 +50,7 @@ impl Frac {
             return Err("division by zero (reciprocal of 0)".into())
         }
 
-        Self::new(self.den, self.num)
+        Ok(Self { num: self.den, den: self.num })
     }
 
     pub fn add(&self, other: &Self) -> Self {

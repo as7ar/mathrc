@@ -3,17 +3,17 @@
 version = 4
 
 [[package]]
-name = "Basic"
-version = "0.1.0"
-dependencies = [
- "mathrc",
-]
-
-[[package]]
 name = "anyhow"
 version = "1.0.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f202df86484c868dbad7eaa557ef785d5c66295e41b460ef922eca0723b842c"
+
+[[package]]
+name = "basic"
+version = "0.1.0"
+dependencies = [
+ "mathrc",
+]
 
 [[package]]
 name = "bitflags"
@@ -139,7 +139,7 @@ checksum = "616ec5685824bcc94416c6d4a7a446eea774a31efd7062c8480ba6fd06d7a6e5"
 [[package]]
 name = "mathrc"
 version = "0.2.2"
-source = "git+https://github.com/as7ar/mathrc#0827bac154d622049de5ff945508db0ac88e8b5c"
+source = "git+https://github.com/as7ar/mathrc#8083e9c1ade54096b1239d00ad5fd2317bedc4b5"
 dependencies = [
  "rand",
 ]
