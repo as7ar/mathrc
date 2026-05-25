@@ -3,7 +3,7 @@
 [![Crates.io](https://img.shields.io/crates/v/mathrc.svg)](https://crates.io/crates/mathrc)
 [![Docs.rs](https://docs.rs/mathrc/badge.svg)](https://docs.rs/mathrc)
 [![Downloads](https://img.shields.io/crates/d/mathrc.svg)](https://crates.io/crates/mathrc)
-[![Rust](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
+[![Rust](https://img.shields.io/badge/rust-1.95.0%2B-orange.svg)](https://www.rust-lang.org)
 
 MathRC is a lightweight Rust mathematics library that provides basic mathematical utilities, fraction handling, functional analysis, and a simple arithmetic expression calculator.
 
