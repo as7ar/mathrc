@@ -8,4 +8,4 @@ pub mod math;
 pub mod calc;
 pub mod sequence;
 pub mod set;
-mod matrix;
+pub mod matrix;

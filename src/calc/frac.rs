@@ -6,8 +6,11 @@ pub struct Frac {
 }
 
 impl Frac {
-    pub fn new(num: i64, den: i64) -> Self {
-        Self { num, den }
+    pub fn new(num: i64, den: i64) -> Result<Self, String> {
+        if den==0 { 
+            return Err("\"den\" must not be 0".into())
+        }
+        Ok(Self { num, den })
     }
 
     pub fn to_dec(self) -> f64 {
@@ -32,9 +35,9 @@ impl Frac {
         }
     }
 
-    pub fn reverse(self) -> Self {
+    pub fn reverse(self) -> Result<Self, String> {
         if self.num==0 {
-            panic!("division by zero (reciprocal of 0)")
+            return Err("division by zero (reciprocal of 0)".into())
         }
 
         Self::new(self.den, self.num)
