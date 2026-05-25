@@ -12,7 +12,7 @@ MathRC is a lightweight Rust mathematics library that provides basic mathematica
 Add MathRC to your `Cargo.toml`:
 ```toml
 [dependencies]
-mathrc = "0.2.0"
+mathrc = "(latest version)"
 ```
 Or, if you want to use the Git repository directly:
 ```toml

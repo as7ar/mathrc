@@ -11,5 +11,8 @@ fn main() {
     println!("PI = {}", Math::PI); // 3.14...
 
     let frac = Frac::new(2, 4).unwrap();
-    println!("1/2={}", frac.normalize()) // 1/2
+    println!("1/2={}", frac.normalize()); // 1/2
+
+    let rev_frac = frac.reverse().unwrap();
+    println!()
 }

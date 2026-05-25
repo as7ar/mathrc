@@ -20,11 +20,11 @@ impl Frac {
         Ok(Self { num, den })
     }
 
-    pub fn to_dec(self) -> f64 {
+    pub fn to_dec(&self) -> f64 {
         (self.num / self.den) as f64
     }
 
-    pub fn normalize(mut self) -> Self {
+    pub fn normalize(&mut self) -> Self {
         if self.num==0 {
             return Self { num:0, den: 1 };
         }
@@ -42,7 +42,7 @@ impl Frac {
         }
     }
 
-    pub fn reverse(self) -> Result<Self, String> {
+    pub fn reverse(&self) -> Result<Self, String> {
         if self.num==0 {
             return Err("division by zero (reciprocal of 0)".into())
         }
@@ -50,28 +50,28 @@ impl Frac {
         Self::new(self.den, self.num)
     }
 
-    pub fn add(self, other: Self) -> Self {
+    pub fn add(&self, other: &Self) -> Self {
         let num = self.num * other.den + self.den * other.num;
         let den = self.den * other.den;
 
         Self { num, den }.normalize()
     }
 
-    pub fn min(self, other: Self) -> Self {
+    pub fn min(&self, other: &Self) -> Self {
         let num = self.num * other.den - self.den * other.num;
         let den = self.den * other.den;
 
         Self { num, den }.normalize()
     }
 
-    pub fn mul(self, other: Self) -> Self {
+    pub fn mul(&self, other: &Self) -> Self {
         let num = self.num * other.num;
         let den = self.den * other.den;
 
         Self { num, den }.normalize()
     }
 
-    pub fn div(self, other: Self) -> Self {
+    pub fn div(&self, other: &Self) -> Self {
         let num = self.num * other.den;
         let den = self.den * other.num;
 
