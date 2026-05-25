@@ -1,40 +1,34 @@
+use std::sync::Arc;
+
+#[derive(Clone)]
 pub struct Func {
-    func: Box<dyn Fn(f64) -> f64>,
+    func: Arc<dyn Fn(f64) -> f64>,
 }
 
 impl Func {
-    pub fn new<F>(func: F) -> Self
-    where
-        F: Fn(f64) -> f64 + 'static,
-    {
-        Self {
-            func: Box::new(func),
-        }
+    pub fn new<F: Fn(f64) -> f64 + 'static>(func: F) -> Self {
+        Self { func: Arc::new(func) }
     }
 
     pub fn call(&self, x: f64) -> f64 {
         (self.func)(x)
     }
 
-    pub fn derivative(self) -> Self {
+    pub fn derivative(&self) -> Self {
         let h = 1e-10;
-
-        Func::new(move |x| {
-            (self.call(x + h) - self.call(x)) / h
-        })
+        let cloned = self.clone();
+        Func::new(move |x| (cloned.call(x + h) - cloned.call(x)) / h)
     }
 
-    pub fn integral(self) -> Self {
+    pub fn integral(&self) -> Self {
+        let cloned = self.clone();
         Func::new(move |x| {
             let n = 100000;
             let dx = x / n as f64;
-
             let mut sum = 0.0;
-
             for i in 0..=n {
-                sum += self.call(i as f64 * dx) * dx;
+                sum += cloned.call(i as f64 * dx) * dx;
             }
-
             sum
         })
     }
@@ -50,11 +44,9 @@ mod test {
 
         println!("{}", f.call(10.0));
 
-        /*let d = f.derivative();
+        println!("{}", f.clone().derivative().call(100.0));
 
-        println!("{}", d.call(100.0));*/
-
-        let i = f.integral();
+        let i = f.clone().integral();
 
         println!("{}", i.call(10.0));
     }

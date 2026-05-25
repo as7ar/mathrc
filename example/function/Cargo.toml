@@ -1,0 +1,7 @@
+[package]
+name = "function"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+mathrc = { git = "https://github.com/as7ar/mathrc" }
