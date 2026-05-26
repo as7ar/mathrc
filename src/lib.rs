@@ -1,11 +1,11 @@
 extern crate core;
 
+pub mod calc;
 pub mod calculator;
 pub mod function;
-pub mod parser;
-mod vector;
 pub mod math;
-pub mod calc;
+pub mod matrix;
+pub mod parser;
 pub mod sequence;
 pub mod set;
-pub mod matrix;
+pub mod vector;
