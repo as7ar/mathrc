@@ -1,13 +1,11 @@
 #[derive(Debug, Clone, PartialEq)]
-pub struct Vector;
+pub struct Vector {
+    vec: Vec<f64>,
+}
 
-pub struct Vector2d;
-pub struct Vector3d;
-
-//todo: Vector
-impl Vector2d {
-    pub fn new() -> Self {
-        Self
+impl Vector {
+    pub fn new(vec: Vec<f64>) -> Self {
+        Self { vec }
     }
 }
 
@@ -16,6 +14,5 @@ mod test {
     use super::*;
 
     #[test]
-    fn test() {
-    }
+    fn test() {}
 }
