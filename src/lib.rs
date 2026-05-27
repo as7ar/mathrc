@@ -1,5 +1,7 @@
 extern crate core;
 
+pub mod err;
+
 pub mod calc;
 pub mod calculator;
 pub mod function;
