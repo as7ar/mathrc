@@ -27,7 +27,7 @@ impl Vector {
     }
 
     pub fn cross(&self, other: &Self) -> Result<Self, VectorErr> {
-        if self.len() != 3 || other.len() != 3 {
+        if self.len() != 3.0 || other.len() != 3.0 {
             return Err(VectorErr::DimensionMismatch);
         }
         Ok(Self {
@@ -54,7 +54,7 @@ impl VectorOps for Vector {
 
     fn normalize(&self) -> Result<Self, VectorErr> {
         let len = self.len();
-        if len == 0 {
+        if len == 0.0 {
             return Err(VectorErr::ZeroVector);
         }
         Ok(Self {
