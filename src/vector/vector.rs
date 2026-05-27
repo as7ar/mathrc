@@ -22,8 +22,8 @@ impl Vector {
         Self { vec }
     }
 
-    pub fn len(&self) -> usize {
-        self.vec.len()
+    pub fn len(&self) -> f64 {
+        self.vec.iter().map(|x| x * x).sum::<f64>().sqrt()
     }
 
     pub fn cross(&self, other: &Self) -> Result<Self, VectorErr> {
