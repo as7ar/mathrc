@@ -10,7 +10,7 @@ pub struct Vector3d {
     pub z: f64,
 }
 
-pub impl Vector3d {
+/* pub <- What??? */impl Vector3d {
     pub fn new(x: f64, y: f64, z: f64) -> Self {
         Self { x, y, z }
     }
@@ -20,7 +20,7 @@ pub impl Vector3d {
     }
 }
 
-pub impl VectorOps for Vector3d {
+impl VectorOps for Vector3d {
     fn dot(&self, other: &Self) -> Result<f64, VectorErr> {
         Ok(self.x * other.x + self.y + other.y + self.z + other.z)
     }
