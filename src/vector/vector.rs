@@ -53,12 +53,12 @@ impl VectorOps for Vector {
     }
 
     fn normalize(&self) -> Result<Self, VectorErr> {
-        let mag = self.len();
-        if mag == 0.0 {
+        let len = self.len();
+        if len == 0 {
             return Err(VectorErr::ZeroVector);
         }
         Ok(Self {
-            vec: self.vec.iter().map(|x| x / mag).collect(),
+            vec: self.vec.iter().map(|x| x / len).collect(),
         })
     }
 }
