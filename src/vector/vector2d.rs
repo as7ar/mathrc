@@ -24,12 +24,12 @@ impl VectorOps for Vector2d {
         Ok(self.x * other.x + self.y * other.y)
     }
 
-    fn magnitude(&self) -> f64 {
+    fn len(&self) -> f64 {
         (self.x * self.x + self.y * self.y).sqrt()
     }
 
     fn normalize(&self) -> Result<Self, VectorErr> {
-        let mag = self.magnitude();
+        let mag = self.len();
         if mag == 0.0 {
             return Err(VectorErr::ZeroVector);
         }
@@ -108,7 +108,7 @@ mod test {
     fn test_normalize() {
         let a = Vector2d::new(3.0, 4.0);
         let n = a.normalize().unwrap();
-        assert!((n.magnitude() - 1.0).abs() < 1e-10);
+        assert!((n.len() - 1.0).abs() < 1e-10);
     }
 
     #[test]

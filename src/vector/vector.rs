@@ -6,7 +6,7 @@ pub trait VectorOps {
     fn dot(&self, other: &Self) -> Result<f64, VectorErr>
     where
         Self: Sized;
-    fn magnitude(&self) -> f64;
+    fn len(&self) -> f64;
     fn normalize(&self) -> Result<Self, VectorErr>
     where
         Self: Sized;
@@ -48,12 +48,12 @@ impl VectorOps for Vector {
         Ok(self.vec.iter().zip(&other.vec).map(|(a, b)| a * b).sum())
     }
 
-    fn magnitude(&self) -> f64 {
+    fn len(&self) -> f64 {
         self.vec.iter().map(|x| x * x).sum::<f64>().sqrt()
     }
 
     fn normalize(&self) -> Result<Self, VectorErr> {
-        let mag = self.magnitude();
+        let mag = self.len();
         if mag == 0.0 {
             return Err(VectorErr::ZeroVector);
         }
@@ -169,7 +169,7 @@ mod test {
     fn test_normalize() {
         let a = Vector::new(vec![3.0, 4.0]);
         let n = a.normalize().unwrap();
-        assert!((n.magnitude() - 1.0).abs() < 1e-10);
+        assert!((n.len() - 1.0).abs() < 1e-10);
     }
 
     #[test]
