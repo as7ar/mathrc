@@ -27,7 +27,7 @@ impl Vector {
     }
 
     pub fn cross(&self, other: &Self) -> Result<Self, VectorErr> {
-        if self.len() != 3.0 || other.len() != 3.0 {
+        if self.vec.len() != 3 || other.vec.len() != 3 {
             return Err(VectorErr::DimensionMismatch);
         }
         Ok(Self {
@@ -42,7 +42,7 @@ impl Vector {
 
 impl VectorOps for Vector {
     fn dot(&self, other: &Self) -> Result<f64, VectorErr> {
-        if self.len() != other.len() {
+        if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
         }
         Ok(self.vec.iter().zip(&other.vec).map(|(a, b)| a * b).sum())
@@ -66,7 +66,7 @@ impl VectorOps for Vector {
 impl Add for Vector {
     type Output = Result<Self, VectorErr>;
     fn add(self, other: Self) -> Result<Self, VectorErr> {
-        if self.len() != other.len() {
+        if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
         }
         Ok(Self {
@@ -83,7 +83,7 @@ impl Add for Vector {
 impl Sub for Vector {
     type Output = Result<Self, VectorErr>;
     fn sub(self, other: Self) -> Result<Self, VectorErr> {
-        if self.len() != other.len() {
+        if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
         }
         Ok(Self {
