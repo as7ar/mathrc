@@ -83,7 +83,7 @@ impl Mul<f64> for Vector3d {
     }
 }
 
-impl Neg for Vecto3d {
+impl Neg for Vector3d {
     type Output = Self;
     fn neg(self) -> Self::Output {
         Self {
