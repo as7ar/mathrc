@@ -30,5 +30,4 @@ This project is licensed under the GPL-3.0 license.
 
 ## Change Log
 ### Fixed
-1. Fixed the issue where variables moved after Frac normalization
-2. Fixed the issue where variables moved after Func derivative/integral
+1. Add Vector, Vector2d, Vector3d

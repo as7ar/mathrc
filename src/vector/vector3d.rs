@@ -1,3 +1,5 @@
+use std::{fmt, ops::{Add, Sub}};
+
 use crate::{
     err::vector_err::VectorErr,
     vector::vector::{Vector, VectorOps},
@@ -10,7 +12,8 @@ pub struct Vector3d {
     pub z: f64,
 }
 
-/* pub <- What??? */impl Vector3d {
+/* pub <- What??? */
+impl Vector3d {
     pub fn new(x: f64, y: f64, z: f64) -> Self {
         Self { x, y, z }
     }
@@ -40,5 +43,55 @@ impl VectorOps for Vector3d {
             y: self.y / mag,
             z: self.z / mag,
         })
+    }
+}
+
+impl Add for Vector3d {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        Self {
+            x: self.x + rhs.x,
+            y: self.y + rhs.y,
+            z: self.z + rhs.z,
+        }
+    }
+}
+
+impl Sub for Vector3d {
+    type Output = Self;
+    fn sub(self, rhs: Self) -> Self::Output {
+        Self {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: slef:z - rhs.z
+        }
+    }
+}
+
+impl Mul<f64> for Vector3d {
+    type Output = Self;
+    fn mul(self, scalar: f64) -> Self::Output {
+        Self {
+            x: self.x * scalar,
+            y: self.y * scalar,
+            z: self.z * scalar
+        }
+    }
+}
+
+impl Neg for Vecto3d {
+    type Output = Self;
+    fn neg(self) -> Self::Output {
+        Self {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z
+        }
+    }
+}
+impl fmt::Display for Vector3d {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
     }
 }

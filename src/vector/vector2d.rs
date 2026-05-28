@@ -42,7 +42,7 @@ impl VectorOps for Vector2d {
 
 impl Add for Vector2d {
     type Output = Self;
-    fn add(self, other: Self) -> Self {
+    fn add(self, other: Self) -> Self::Output {
         Self {
             x: self.x + other.x,
             y: self.y + other.y,
@@ -52,7 +52,7 @@ impl Add for Vector2d {
 
 impl Sub for Vector2d {
     type Output = Self;
-    fn sub(self, other: Self) -> Self {
+    fn sub(self, other: Self) -> Self::Output {
         Self {
             x: self.x - other.x,
             y: self.y - other.y,
@@ -62,7 +62,7 @@ impl Sub for Vector2d {
 
 impl Mul<f64> for Vector2d {
     type Output = Self;
-    fn mul(self, scalar: f64) -> Self {
+    fn mul(self, scalar: f64) -> Self::Output {
         Self {
             x: self.x * scalar,
             y: self.y * scalar,
@@ -72,7 +72,7 @@ impl Mul<f64> for Vector2d {
 
 impl Neg for Vector2d {
     type Output = Self;
-    fn neg(self) -> Self {
+    fn neg(self) -> Self::Output {
         Self {
             x: -self.x,
             y: -self.y,
