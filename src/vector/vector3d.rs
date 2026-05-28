@@ -1,4 +1,7 @@
-use std::{fmt, ops::{Add, Sub}};
+use std::{
+    fmt,
+    ops::{Add, Sub},
+};
 
 use crate::{
     err::vector_err::VectorErr,
@@ -64,7 +67,7 @@ impl Sub for Vector3d {
         Self {
             x: self.x - rhs.x,
             y: self.y - rhs.y,
-            z: slef:z - rhs.z
+            z: self.z - rhs.z,
         }
     }
 }
@@ -75,7 +78,7 @@ impl Mul<f64> for Vector3d {
         Self {
             x: self.x * scalar,
             y: self.y * scalar,
-            z: self.z * scalar
+            z: self.z * scalar,
         }
     }
 }
@@ -86,7 +89,7 @@ impl Neg for Vecto3d {
         Self {
             x: -self.x,
             y: -self.y,
-            z: -self.z
+            z: -self.z,
         }
     }
 }
