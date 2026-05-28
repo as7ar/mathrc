@@ -1,6 +1,6 @@
 use std::{
     fmt,
-    ops::{Add, Sub},
+    ops::{Add, Mul, Neg, Sub},
 };
 
 use crate::{
