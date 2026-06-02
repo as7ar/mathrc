@@ -42,7 +42,7 @@ impl<T: Float> Vector<T> {
     }
 }
 
-impl<T: Float> VectorOps<T> for Vector<T> {
+impl<T: Float + Sum> VectorOps<T> for Vector<T> {
     fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
