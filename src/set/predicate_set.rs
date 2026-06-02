@@ -1,9 +1,15 @@
-#[derive(Debug, Clone, )]
-pub struct PredicateSet<T> where T: Fn(f64) -> bool,  {
-    condition: T
+#[derive(Debug, Clone)]
+pub struct PredicateSet<T>
+where
+    T: Fn(f64) -> bool,
+{
+    condition: T,
 }
 
-impl<T> PredicateSet<T> where T: Fn(f64) -> bool {
+impl<T> PredicateSet<T>
+where
+    T: Fn(f64) -> bool,
+{
     pub fn new(condition: T) -> Self {
         Self { condition }
     }
@@ -13,7 +19,6 @@ impl<T> PredicateSet<T> where T: Fn(f64) -> bool {
     }
 
     pub fn is_subset(&self, _other: Self) -> bool {
-        // todo: Q.E.D.
         false
     }
 }

@@ -1,2 +1,3 @@
-pub mod trigonometric;
-pub mod function;
+mod function;
+
+pub use self::function::Func;

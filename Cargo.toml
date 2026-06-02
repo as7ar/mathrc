@@ -1,7 +1,7 @@
 [package]
 name = "mathrc"
 description = "Rust Mathematics Library"
-version = "0.2.4"
+version = "0.2.5"
 edition = "2021"
 readme = "README.md"
 license = "GPL-3.0"
@@ -10,4 +10,4 @@ homepage = "https://mathrc.onsaenaro.site"
 repository = "https://github.com/as7ar/mathrc"
 
 [dependencies]
-rand = "0.10.1"
+num-traits = "0.2.19"

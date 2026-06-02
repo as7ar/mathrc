@@ -1,1 +1,3 @@
-pub mod vector_err;
+mod vector_err;
+
+pub use vector_err::VectorErr;

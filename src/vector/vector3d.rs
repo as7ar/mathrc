@@ -3,21 +3,22 @@ use std::{
     ops::{Add, Mul, Neg, Sub},
 };
 
+use num_traits::Float;
+
 use crate::{
-    err::vector_err::VectorErr,
-    vector::vector::{Vector, VectorOps},
+    err::VectorErr,
+    vector::{Vector, VectorOps},
 };
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub struct Vector3d {
-    pub x: f64,
-    pub y: f64,
-    pub z: f64,
+pub struct Vector3d<T: Float> {
+    pub x: T,
+    pub y: T,
+    pub z: T,
 }
 
-/* pub <- What??? */
-impl Vector3d {
-    pub fn new(x: f64, y: f64, z: f64) -> Self {
+impl<T: Float> Vector3d<T> {
+    pub fn new(x: T, y: T, z: T) -> Self {
         Self { x, y, z }
     }
 
@@ -26,18 +27,18 @@ impl Vector3d {
     }
 }
 
-impl VectorOps for Vector3d {
-    fn dot(&self, other: &Self) -> Result<f64, VectorErr> {
+impl<T: Float> VectorOps<T> for Vector3d<T> {
+    fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         Ok(self.x * other.x + self.y + other.y + self.z + other.z)
     }
 
-    fn len(&self) -> f64 {
+    fn len(&self) -> T {
         (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
     }
 
     fn normalize(&self) -> Result<Self, VectorErr> {
         let mag = self.len();
-        if mag == 0.0 {
+        if mag == T::zero() {
             return Err(VectorErr::ZeroVector);
         }
 
@@ -49,7 +50,7 @@ impl VectorOps for Vector3d {
     }
 }
 
-impl Add for Vector3d {
+impl<T: Float> Add for Vector3d<T> {
     type Output = Self;
 
     fn add(self, rhs: Self) -> Self::Output {
@@ -61,7 +62,7 @@ impl Add for Vector3d {
     }
 }
 
-impl Sub for Vector3d {
+impl<T: Float> Sub for Vector3d<T> {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self::Output {
         Self {
@@ -72,9 +73,9 @@ impl Sub for Vector3d {
     }
 }
 
-impl Mul<f64> for Vector3d {
+impl<T: Float> Mul<T> for Vector3d<T> {
     type Output = Self;
-    fn mul(self, scalar: f64) -> Self::Output {
+    fn mul(self, scalar: T) -> Self::Output {
         Self {
             x: self.x * scalar,
             y: self.y * scalar,
@@ -83,7 +84,7 @@ impl Mul<f64> for Vector3d {
     }
 }
 
-impl Neg for Vector3d {
+impl<T: Float> Neg for Vector3d<T> {
     type Output = Self;
     fn neg(self) -> Self::Output {
         Self {
@@ -93,7 +94,7 @@ impl Neg for Vector3d {
         }
     }
 }
-impl fmt::Display for Vector3d {
+impl<T: Float> fmt::Display for Vector3d<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
     }

@@ -1,9 +1,15 @@
-pub struct Seq<S> where S: Fn(u64) -> f64,{
+pub struct Seq<S>
+where
+    S: Fn(u64) -> f64,
+{
     seq: S,
 }
 
-impl<S> Seq<S> where S: Fn(u64) -> f64 {
-    pub fn define(seq: S) -> Self {
+impl<S> Seq<S>
+where
+    S: Fn(u64) -> f64,
+{
+    pub fn new(seq: S) -> Self {
         Self { seq }
     }
 

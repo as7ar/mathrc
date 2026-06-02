@@ -1,29 +1,27 @@
-use crate::err::vector_err::VectorErr;
+use num_traits::Float;
+
+use crate::err::VectorErr;
 use std::fmt;
 use std::ops::{Add, Index, IndexMut, Mul, Neg, Sub};
 
-pub trait VectorOps {
-    fn dot(&self, other: &Self) -> Result<f64, VectorErr>
+pub trait VectorOps<T: Float> {
+    fn dot(&self, other: &Self) -> Result<T, VectorErr>
     where
         Self: Sized;
-    fn len(&self) -> f64;
+    fn len(&self) -> T;
     fn normalize(&self) -> Result<Self, VectorErr>
     where
         Self: Sized;
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct Vector {
-    vec: Vec<f64>,
+pub struct Vector<T: Float> {
+    vec: Vec<T>,
 }
 
-impl Vector {
-    pub fn new(vec: Vec<f64>) -> Self {
+impl<T: Float> Vector<T> {
+    pub fn new(vec: Vec<T>) -> Self {
         Self { vec }
-    }
-
-    pub fn len(&self) -> f64 {
-        self.vec.iter().map(|x| x * x).sum::<f64>().sqrt()
     }
 
     pub fn cross(&self, other: &Self) -> Result<Self, VectorErr> {
@@ -40,30 +38,30 @@ impl Vector {
     }
 }
 
-impl VectorOps for Vector {
-    fn dot(&self, other: &Self) -> Result<f64, VectorErr> {
+impl<T: Float> VectorOps<T> for Vector<T> {
+    fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
         }
         Ok(self.vec.iter().zip(&other.vec).map(|(a, b)| a * b).sum())
     }
 
-    fn len(&self) -> f64 {
-        self.vec.iter().map(|x| x * x).sum::<f64>().sqrt()
+    fn len(&self) -> T {
+        self.vec.iter().map(|x| *x * *x).sum::<T>().sqrt()
     }
 
     fn normalize(&self) -> Result<Self, VectorErr> {
         let len = self.len();
-        if len == 0.0 {
+        if len == T::zero() {
             return Err(VectorErr::ZeroVector);
         }
         Ok(Self {
-            vec: self.vec.iter().map(|x| x / len).collect(),
+            vec: self.vec.iter().map(|x| *x / len).collect(),
         })
     }
 }
 
-impl Add for Vector {
+impl<T: Float> Add for Vector<T> {
     type Output = Result<Self, VectorErr>;
     fn add(self, other: Self) -> Result<Self, VectorErr> {
         if self.vec.len() != other.vec.len() {
@@ -74,13 +72,13 @@ impl Add for Vector {
                 .vec
                 .iter()
                 .zip(&other.vec)
-                .map(|(a, b)| a + b)
+                .map(|(a, b)| *a + *b)
                 .collect(),
         })
     }
 }
 
-impl Sub for Vector {
+impl<T: Float> Sub for Vector<T> {
     type Output = Result<Self, VectorErr>;
     fn sub(self, other: Self) -> Result<Self, VectorErr> {
         if self.vec.len() != other.vec.len() {
@@ -91,44 +89,44 @@ impl Sub for Vector {
                 .vec
                 .iter()
                 .zip(&other.vec)
-                .map(|(a, b)| a - b)
+                .map(|(a, b)| *a - *b)
                 .collect(),
         })
     }
 }
 
-impl Mul<f64> for Vector {
+impl<T: Float> Mul<T> for Vector<T> {
     type Output = Self;
-    fn mul(self, scalar: f64) -> Self {
+    fn mul(self, scalar: T) -> Self {
         Self {
-            vec: self.vec.iter().map(|x| x * scalar).collect(),
+            vec: self.vec.iter().map(|x| *x * scalar).collect(),
         }
     }
 }
 
-impl Neg for Vector {
+impl<T: Float> Neg for Vector<T> {
     type Output = Self;
     fn neg(self) -> Self {
         Self {
-            vec: self.vec.iter().map(|x| -x).collect(),
+            vec: self.vec.iter().map(|x| -*x).collect(),
         }
     }
 }
 
-impl Index<usize> for Vector {
-    type Output = f64;
-    fn index(&self, index: usize) -> &f64 {
+impl<T: Float> Index<usize> for Vector<T> {
+    type Output = T;
+    fn index(&self, index: usize) -> &T {
         &self.vec[index]
     }
 }
 
-impl IndexMut<usize> for Vector {
-    fn index_mut(&mut self, index: usize) -> &mut f64 {
+impl<T: Float> IndexMut<usize> for Vector<T> {
+    fn index_mut(&mut self, index: usize) -> &mut T {
         &mut self.vec[index]
     }
 }
 
-impl fmt::Display for Vector {
+impl<T: Float> fmt::Display for Vector<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let inner = self
             .vec

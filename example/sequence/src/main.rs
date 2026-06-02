@@ -3,7 +3,7 @@ use mathrc::sequence::sequences::factorial;
 use mathrc::sequence::sum::sum;
 
 fn main() {
-    let a = Seq::define(|n| n as f64 + 1f64);
+    let a = Seq::new(|n| n as f64 + 1f64);
     println!("a_1 = {}", a.nth(1)); // 2
     println!("S_10 = {}", a.sum(1, 10)); // 65
 
