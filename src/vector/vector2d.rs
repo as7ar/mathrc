@@ -3,6 +3,7 @@ use num_traits::Float;
 use crate::err::VectorErr;
 use crate::vector::{Vector, VectorOps};
 use std::fmt;
+use std::iter::Sum;
 use std::ops::{Add, Mul, Neg, Sub};
 
 #[derive(Debug, Copy, Clone, PartialEq)]
@@ -16,12 +17,12 @@ impl<T: Float> Vector2d<T> {
         Self { x, y }
     }
 
-    pub fn to_vec(&self) -> Vector {
+    pub fn to_vec(&self) -> Vector<T> {
         Vector::new(vec![self.x, self.y])
     }
 }
 
-impl<T: Float> VectorOps<T> for Vector2d<T> {
+impl<T> VectorOps<T> for Vector2d<T> where T: Float + Sum<T> {
     fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         Ok(self.x * other.x + self.y * other.y)
     }

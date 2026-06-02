@@ -1,15 +1,15 @@
-use std::ops::{Index, IndexMut};
+use std::ops::{AddAssign, Index, IndexMut};
 
 use num_traits::Float;
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct Matrix<T: Float> {
+pub struct Matrix<T> where T: Float + AddAssign {
     data: Vec<T>,
     rows: usize,
     cols: usize,
 }
 
-impl<T: Float + 'static> Matrix<T> {
+impl<T> Matrix<T> where T: Float + AddAssign + 'static {
     pub fn new(data: Vec<T>, rows: usize, cols: usize) -> Result<Self, String> {
         if data.len() != (rows * cols) {
             return Err("invalid matrix size".into());
@@ -122,18 +122,18 @@ impl<T: Float> IndexMut<(usize, usize)> for Matrix<T> {
 
 #[cfg(test)]
 mod test {
-    use crate::matrix::matrix::Matrix;
+    use crate::Matrix;
 
     #[test]
     fn matrix() {
-        // let m = Matrix::new(
-        //     vec![
-        //         0f64, 1f64, 0f64, 1f64, 0f64, 1f64, 1f64, 0f64, 1f64, 0f64, 1f64, 0f64,
-        //     ],
-        //     3,
-        //     4,
-        // );
+        let m = Matrix::new(
+            vec![
+                0f64, 1f64, 0f64, 1f64, 0f64, 1f64, 1f64, 0f64, 1f64, 0f64, 1f64, 0f64,
+            ],
+            3,
+            4,
+        );
 
-        // println!("{}", m.unwrap().get(1, 2).unwrap())
+        println!("{}", m.unwrap().get(1, 2).unwrap())
     }
 }

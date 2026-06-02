@@ -7,7 +7,7 @@ use std::ops::{Add, Index, IndexMut, Mul, Neg, Sub};
 
 pub trait VectorOps<T>
 where
-    T: Float + Sum,
+    T: Float + Sum<T>,
 {
     fn dot(&self, other: &Self) -> Result<T, VectorErr>
     where

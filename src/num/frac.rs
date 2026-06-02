@@ -1,95 +1,72 @@
-use num_traits::{FromPrimitive, PrimInt, Signed};
-
-use crate::math::Math;
 use std::fmt;
+use crate::math::Math;
 
 #[derive(Clone, PartialEq)]
-pub struct Frac<T>
-where
-    T: PrimInt + Signed,
-{
-    pub num: T,
-    pub den: T,
+pub struct Frac {
+    pub num: i64,
+    pub den: i64,
 }
 
-impl<T: PrimInt + fmt::Display> fmt::Display for Frac<T> {
+impl fmt::Display for Frac {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        if self.den == T::one() {
-            return write!(f, "{}", self.num);
-        }
-        if self.num == T::zero() {
-            return write!(f, "0");
-        }
+        if self.den==1 { return write!(f, "{}", self.num) }
+        if self.num==0 { return write!(f, "0") }
         write!(f, "{}/{}", self.num, self.den)
     }
 }
 
-impl<T: PrimInt + FromPrimitive + 'static> Frac<T> {
-    pub fn new(num: T, den: T) -> Result<Self, String> {
-        if den == T::zero() {
-            return Err("\"den\" must not be 0".into());
+impl Frac {
+    pub fn new(num: i64, den: i64) -> Result<Self, String> {
+        if den==0 {
+            return Err("\"den\" must not be 0".into())
         }
         Ok(Self { num, den })
     }
 
-    pub fn to_dec(&self) -> Option<f64> {
-        Some(self.num.to_f64()? / self.den.to_f64()?)
+    pub fn to_dec(&self) -> f64 {
+        (self.num / self.den) as f64
     }
 
-    pub fn normalize(&self) -> Option<Self> {
-        if self.num == T::zero() {
-            return Some(Self {
-                num: T::zero(),
-                den: T::one(),
-            });
-        }
+    pub fn normalize(&self) -> Self {
+        if self.num==0 { return Self { num:0, den: 1 }; }
 
-        let (num, den) = if self.den < T::zero() {
-            (-self.num, -self.den)
-        } else {
-            (self.num, self.den)
-        };
-        let gcd = Math::gcd(num.to_i64()?, den.to_i64()?);
+        let (num, den) = if self.den < 0 { (-self.num, -self.den)
+        } else { (self.num, self.den) };
+        let gcd = Math::gcd(den, num);
 
-        Some(Self {
-            num: T::from_i64(num.to_i64()? / gcd)?,
-            den: T::from_i64(den.to_i64()? / gcd)?,
-        })
+        Self { num: num / gcd, den: den / gcd }
     }
 
     pub fn reverse(&self) -> Result<Self, String> {
-        if self.num == T::zero() {
-            return Err("division by zero (reciprocal of 0)".into());
+        if self.num==0 {
+            return Err("division by zero (reciprocal of 0)".into())
         }
 
-        Ok(Self {
-            num: self.den,
-            den: self.num,
-        })
+        Ok(Self { num: self.den, den: self.num })
     }
 
-    pub fn add(&self, other: &Self) -> Option<Self> {
+    pub fn add(&self, other: &Self) -> Self {
         let num = self.num * other.den + self.den * other.num;
         let den = self.den * other.den;
 
         Self { num, den }.normalize()
     }
 
-    pub fn min(&self, other: &Self) -> Option<Self> {
+    pub fn min(&self, other: &Self) -> Self {
         let num = self.num * other.den - self.den * other.num;
         let den = self.den * other.den;
 
         Self { num, den }.normalize()
     }
 
-    pub fn mul(&self, other: &Self) -> Option<Self> {
+    pub fn mul(&self, other: &Self) -> Self {
         let num = self.num * other.num;
         let den = self.den * other.den;
 
         Self { num, den }.normalize()
     }
 
-    pub fn div(&self, other: &Self) -> Option<Self> {
+    pub fn div(&self, other: &Self) -> Self {
         let num = self.num * other.den;
         let den = self.den * other.num;
 
@@ -99,7 +76,7 @@ impl<T: PrimInt + FromPrimitive + 'static> Frac<T> {
 
 #[cfg(test)]
 mod test {
-    use crate::calc::frac::Frac;
+    use crate::Frac;
 
     #[test]
     fn main() {

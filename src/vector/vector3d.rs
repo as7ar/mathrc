@@ -2,7 +2,7 @@ use std::{
     fmt,
     ops::{Add, Mul, Neg, Sub},
 };
-
+use std::iter::Sum;
 use num_traits::Float;
 
 use crate::{
@@ -22,12 +22,12 @@ impl<T: Float> Vector3d<T> {
         Self { x, y, z }
     }
 
-    pub fn to_vec(&self) -> Vector {
+    pub fn to_vec(&self) -> Vector<T> {
         Vector::new(vec![self.x, self.y, self.z])
     }
 }
 
-impl<T: Float> VectorOps<T> for Vector3d<T> {
+impl<T> VectorOps<T> for Vector3d<T> where T: Float + Sum<T> {
     fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         Ok(self.x * other.x + self.y + other.y + self.z + other.z)
     }
