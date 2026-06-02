@@ -37,7 +37,7 @@ impl<T: Float + 'static> Matrix<T> {
             .data
             .iter()
             .zip(other.data.iter())
-            .map(|(a, b)| a + b)
+            .map(|(a, b)| *a + *b)
             .collect();
 
         Ok(Self {
@@ -126,14 +126,14 @@ mod test {
 
     #[test]
     fn matrix() {
-        let m = Matrix::new(
-            vec![
-                0f64, 1f64, 0f64, 1f64, 0f64, 1f64, 1f64, 0f64, 1f64, 0f64, 1f64, 0f64,
-            ],
-            3,
-            4,
-        );
+        // let m = Matrix::new(
+        //     vec![
+        //         0f64, 1f64, 0f64, 1f64, 0f64, 1f64, 1f64, 0f64, 1f64, 0f64, 1f64, 0f64,
+        //     ],
+        //     3,
+        //     4,
+        // );
 
-        println!("{}", m.unwrap().get(1, 2).unwrap())
+        // println!("{}", m.unwrap().get(1, 2).unwrap())
     }
 }

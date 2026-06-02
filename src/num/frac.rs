@@ -1,20 +1,23 @@
-use num_traits::{FromPrimitive, PrimInt};
+use num_traits::{FromPrimitive, PrimInt, Signed};
 
 use crate::math::Math;
 use std::fmt;
 
 #[derive(Clone, PartialEq)]
-pub struct Frac<T: PrimInt> {
+pub struct Frac<T>
+where
+    T: PrimInt + Signed,
+{
     pub num: T,
     pub den: T,
 }
 
-impl fmt::Display for Frac {
+impl<T: PrimInt + fmt::Display> fmt::Display for Frac<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        if self.den == 1 {
+        if self.den == T::one() {
             return write!(f, "{}", self.num);
         }
-        if self.num == 0 {
+        if self.num == T::zero() {
             return write!(f, "0");
         }
         write!(f, "{}/{}", self.num, self.den)
@@ -46,7 +49,7 @@ impl<T: PrimInt + FromPrimitive + 'static> Frac<T> {
         } else {
             (self.num, self.den)
         };
-        let gcd = Math::gcd(den.to_i64()?, den.to_i64()?);
+        let gcd = Math::gcd(num.to_i64()?, den.to_i64()?);
 
         Some(Self {
             num: T::from_i64(num.to_i64()? / gcd)?,
@@ -65,32 +68,32 @@ impl<T: PrimInt + FromPrimitive + 'static> Frac<T> {
         })
     }
 
-    pub fn add(&self, other: &Self) -> Self {
+    pub fn add(&self, other: &Self) -> Option<Self> {
         let num = self.num * other.den + self.den * other.num;
         let den = self.den * other.den;
 
-        Self { num, den }.normalize()?
+        Self { num, den }.normalize()
     }
 
-    pub fn min(&self, other: &Self) -> Self {
+    pub fn min(&self, other: &Self) -> Option<Self> {
         let num = self.num * other.den - self.den * other.num;
         let den = self.den * other.den;
 
-        Self { num, den }.normalize()?
+        Self { num, den }.normalize()
     }
 
-    pub fn mul(&self, other: &Self) -> Self {
+    pub fn mul(&self, other: &Self) -> Option<Self> {
         let num = self.num * other.num;
         let den = self.den * other.den;
 
-        Self { num, den }.normalize()?
+        Self { num, den }.normalize()
     }
 
-    pub fn div(&self, other: &Self) -> Self {
+    pub fn div(&self, other: &Self) -> Option<Self> {
         let num = self.num * other.den;
         let den = self.den * other.num;
 
-        Self { num, den }.normalize()?
+        Self { num, den }.normalize()
     }
 }
 

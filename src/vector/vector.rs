@@ -2,9 +2,13 @@ use num_traits::Float;
 
 use crate::err::VectorErr;
 use std::fmt;
+use std::iter::Sum;
 use std::ops::{Add, Index, IndexMut, Mul, Neg, Sub};
 
-pub trait VectorOps<T: Float> {
+pub trait VectorOps<T>
+where
+    T: Float + Sum,
+{
     fn dot(&self, other: &Self) -> Result<T, VectorErr>
     where
         Self: Sized;
@@ -43,7 +47,7 @@ impl<T: Float> VectorOps<T> for Vector<T> {
         if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
         }
-        Ok(self.vec.iter().zip(&other.vec).map(|(a, b)| a * b).sum())
+        Ok(self.vec.iter().zip(&other.vec).map(|(a, b)| *a * *b).sum())
     }
 
     fn len(&self) -> T {
@@ -126,7 +130,7 @@ impl<T: Float> IndexMut<usize> for Vector<T> {
     }
 }
 
-impl<T: Float> fmt::Display for Vector<T> {
+impl<T: Float + fmt::Display> fmt::Display for Vector<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let inner = self
             .vec

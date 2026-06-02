@@ -94,7 +94,7 @@ impl<T: Float> Neg for Vector3d<T> {
         }
     }
 }
-impl<T: Float> fmt::Display for Vector3d<T> {
+impl<T: Float + fmt::Display> fmt::Display for Vector3d<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "[{}, {}, {}]", self.x, self.y, self.z)
     }
