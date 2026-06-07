@@ -48,7 +48,7 @@ mod test {
 
     #[test]
     fn function() {
-        let f: Func<f64> = Func::new(|x| x.powi(2));
+        let f: Func<f64> = Func::new(|x: f64| x.powi(2));
 
         println!("{}", f.call(10.0));
 
