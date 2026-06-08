@@ -306,7 +306,7 @@ mod test {
     fn test_normalize() {
         let a = Vector::new(vec![3.0, 4.0]);
         let n = a.normalize().unwrap();
-        assert!((n.len() - 1.0).abs() < 1e-10);
+        assert!((n.magnitude() - 1.0).abs() < 1e-10);
     }
 
     #[test]
