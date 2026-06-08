@@ -147,7 +147,7 @@ impl<T: Float + Sum> VectorOps<T> for Vector<T> {
     ///
     /// Returns [`VectorErr::ZeroVector`] if the vector length is zero.
     fn normalize(&self) -> Result<Self, VectorErr> {
-        let len = self.len();
+        let len = self.magnitude();
         if len == T::zero() {
             return Err(VectorErr::ZeroVector);
         }
