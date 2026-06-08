@@ -26,3 +26,5 @@ pub use num::Frac;
 pub use num::Matrix;
 
 pub use function::Func;
+
+pub use math::Math;

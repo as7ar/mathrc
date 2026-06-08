@@ -7,7 +7,7 @@
 //! # Examples
 //!
 //! ```rust
-//! use mathrc::vector::Vector3d;
+//! use mathrc::Vector3d;
 //!
 //! let a = Vector3d::new(1.0, 2.0, 3.0);
 //! let b = Vector3d::new(4.0, 5.0, 6.0);
@@ -18,7 +18,7 @@
 //! ```
 //!
 //! ```rust
-//! use mathrc::vector::{Vector3d, VectorOps};
+//! use mathrc::{Vector3d, VectorOps};
 //!
 //! let v = Vector3d::new(3.0, 4.0, 0.0);
 //!
@@ -46,7 +46,7 @@ use crate::{
 /// # Examples
 ///
 /// ```rust
-/// use mathrc::vector::Vector3d;
+/// use mathrc::Vector3d;
 ///
 /// let v = Vector3d::new(1.0, 2.0, 3.0);
 ///
@@ -72,7 +72,7 @@ impl<T: Float> Vector3d<T> {
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::Vector3d;
+    /// use mathrc::Vector3d;
     ///
     /// let v = Vector3d::new(1.0, 2.0, 3.0);
     ///
@@ -87,7 +87,7 @@ impl<T: Float> Vector3d<T> {
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::Vector3d;
+    /// use mathrc::Vector3d;
     ///
     /// let v = Vector3d::new(1.0, 2.0, 3.0);
     /// let vec = v.to_vec();
@@ -105,7 +105,7 @@ impl<T: Float> Vector3d<T> {
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::Vector3d;
+    /// use mathrc::Vector3d;
     ///
     /// let a = Vector3d::new(1.0, 0.0, 0.0);
     /// let b = Vector3d::new(0.0, 1.0, 0.0);
@@ -133,7 +133,7 @@ where
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::{Vector3d, VectorOps};
+    /// use mathrc::{Vector3d, VectorOps};
     ///
     /// let a = Vector3d::new(1.0, 2.0, 3.0);
     /// let b = Vector3d::new(4.0, 5.0, 6.0);
@@ -149,7 +149,7 @@ where
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::{Vector3d, VectorOps};
+    /// use mathrc::{Vector3d, VectorOps};
     ///
     /// let v = Vector3d::new(1.0, 2.0, 2.0);
     ///
@@ -168,7 +168,7 @@ where
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::{Vector3d, VectorOps};
+    /// use mathrc::{Vector3d, VectorOps};
     ///
     /// let v = Vector3d::new(3.0, 4.0, 0.0);
     /// let n = v.normalize().unwrap();

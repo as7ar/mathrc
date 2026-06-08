@@ -13,6 +13,8 @@ use std::sync::Arc;
 /// # Examples
 ///
 /// ```
+/// use mathrc::Func;
+///
 /// let f = Func::new(|x: f64| x * x);
 ///
 /// assert_eq!(f.call(3.0), 9.0);
@@ -28,6 +30,8 @@ impl<T: Float + 'static> Func<T> {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Func;
+    ///
     /// let f = Func::new(|x: f64| x + 1.0);
     ///
     /// assert_eq!(f.call(2.0), 3.0);

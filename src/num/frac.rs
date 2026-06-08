@@ -10,6 +10,8 @@ use std::fmt;
 /// # Examples
 ///
 /// ```
+/// use mathrc::Frac;
+///
 /// let frac = Frac::new(1, 2).unwrap();
 ///
 /// assert_eq!(frac.num, 1);
@@ -45,6 +47,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let frac = Frac::new(2, 4).unwrap();
     /// ```
     pub fn new(num: i64, den: i64) -> Result<Self, String> {
@@ -59,6 +63,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let frac = Frac::new(1, 2).unwrap();
     ///
     /// assert_eq!(frac.to_dec(), 0.5);
@@ -74,6 +80,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let frac = Frac::new(2, 4).unwrap();
     ///
     /// assert_eq!(frac.normalize().to_string(), "1/2");
@@ -105,6 +113,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let frac = Frac::new(2, 3).unwrap();
     ///
     /// assert_eq!(frac.reverse().unwrap().to_string(), "3/2");
@@ -125,6 +135,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let a = Frac::new(1, 2).unwrap();
     /// let b = Frac::new(1, 3).unwrap();
     ///
@@ -142,6 +154,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let a = Frac::new(3, 4).unwrap();
     /// let b = Frac::new(1, 4).unwrap();
     ///
@@ -159,6 +173,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let a = Frac::new(2, 3).unwrap();
     /// let b = Frac::new(3, 4).unwrap();
     ///
@@ -176,6 +192,8 @@ impl Frac {
     /// # Examples
     ///
     /// ```
+    /// use mathrc::Frac;
+    ///
     /// let a = Frac::new(1, 2).unwrap();
     /// let b = Frac::new(1, 4).unwrap();
     ///

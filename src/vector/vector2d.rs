@@ -7,7 +7,7 @@
 //! # Examples
 //!
 //! ```rust
-//! use mathrc::vector::Vector2d;
+//! use mathrc::Vector2d;
 //!
 //! let a = Vector2d::new(1.0, 2.0);
 //! let b = Vector2d::new(3.0, 4.0);
@@ -17,7 +17,7 @@
 //! ```
 //!
 //! ```rust
-//! use mathrc::vector::{Vector2d, VectorOps};
+//! use mathrc::{Vector2d, VectorOps};
 //!
 //! let v = Vector2d::new(3.0, 4.0);
 //! let normalized = v.normalize().unwrap();
@@ -42,7 +42,7 @@ use std::ops::{Add, Mul, Neg, Sub};
 /// # Examples
 ///
 /// ```rust
-/// use mathrc::vector::Vector2d;
+/// use mathrc::Vector2d;
 ///
 /// let v = Vector2d::new(1.0, 2.0);
 ///
@@ -64,7 +64,7 @@ impl<T: Float> Vector2d<T> {
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::Vector2d;
+    /// use mathrc::Vector2d;
     ///
     /// let v = Vector2d::new(3.0, 4.0);
     ///
@@ -80,7 +80,7 @@ impl<T: Float> Vector2d<T> {
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::Vector2d;
+    /// use mathrc::Vector2d;
     ///
     /// let v = Vector2d::new(1.0, 2.0);
     /// let vec = v.to_vec();
@@ -102,7 +102,7 @@ where
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::{Vector2d, VectorOps};
+    /// use mathrc::{Vector2d, VectorOps};
     ///
     /// let a = Vector2d::new(1.0, 2.0);
     /// let b = Vector2d::new(3.0, 4.0);
@@ -118,7 +118,7 @@ where
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::{Vector2d, VectorOps};
+    /// use mathrc::{Vector2d, VectorOps};
     ///
     /// let v = Vector2d::new(3.0, 4.0);
     ///
@@ -137,7 +137,7 @@ where
     /// # Examples
     ///
     /// ```rust
-    /// use mathrc::vector::{Vector2d, VectorOps};
+    /// use mathrc::{Vector2d, VectorOps};
     ///
     /// let v = Vector2d::new(3.0, 4.0);
     /// let n = v.normalize().unwrap();
