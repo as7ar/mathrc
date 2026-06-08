@@ -170,8 +170,8 @@ where
     /// ```rust
     /// use mathrc::{Vector3d, VectorOps};
     ///
-    /// let v = Vector3d::new(3.0, 4.0, 0.0);
-    /// let n = v.normalize().unwrap();
+    /// let v: Vector3d<f64> = Vector3d::new(3.0, 4.0, 0.0);
+    /// let n: Vector3d<f64> = v.normalize().unwrap();
     ///
     /// assert!((n.magnitude() - 1.0).abs() < 1e-10);
     /// ```
