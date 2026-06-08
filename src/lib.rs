@@ -15,6 +15,7 @@ mod vector;
 pub use vector::Vector;
 pub use vector::Vector2d;
 pub use vector::Vector3d;
+pub use vector::VectorOps;
 
 pub use set::PredicateSet;
 pub use set::Set;

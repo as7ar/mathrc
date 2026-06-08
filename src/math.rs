@@ -11,7 +11,7 @@
 //!
 //! assert_eq!(Math::gcd(12, 18), 6);
 //! assert_eq!(Math::lcm(12, 18), 36);
-//! assert_eq!(Math::factorial(5), 120);
+//! assert_eq!(Math::factorial(5), Some(120));
 //! ```
 //!
 //! ```rust
