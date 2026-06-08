@@ -10,4 +10,5 @@ homepage = "https://mathrc.onsaenaro.site"
 repository = "https://github.com/as7ar/mathrc"
 
 [dependencies]
+num-bigint = "0.4.6"
 num-traits = "0.2.19"
