@@ -20,17 +20,17 @@
 /// # Examples
 ///
 /// ```rust
-/// use mathrc::Math;
+/// use mathrc::sum;
 ///
-/// let result = Math::sum(1, 5, |n| n as f64);
+/// let result = sum(1, 5, |n| n as f64);
 ///
 /// assert_eq!(result, 15.0);
 /// ```
 ///
 /// ```rust
-/// use mathrc::Math;
+/// use mathrc::sum;
 ///
-/// let result = Math::sum(1, 3, |n| (n * n) as f64);
+/// let result = sum(1, 3, |n| (n * n) as f64);
 ///
 /// assert_eq!(result, 14.0);
 /// ```

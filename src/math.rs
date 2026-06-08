@@ -80,8 +80,8 @@ impl Math {
     /// ```rust
     /// use mathrc::Math;
     ///
-    /// assert_eq!(Math::factorial(0), 1);
-    /// assert_eq!(Math::factorial(5), 120);
+    /// assert_eq!(Math::factorial(0), Some(1));
+    /// assert_eq!(Math::factorial(5), Some(120));
     /// ```
     pub fn factorial(n: u64) -> Option<u64> {
         let mut result = 1u64;

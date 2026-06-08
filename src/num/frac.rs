@@ -161,7 +161,7 @@ impl Frac {
     ///
     /// assert_eq!(a.sub(&b).to_string(), "1/2");
     /// ```
-    pub fn min(&self, other: &Self) -> Self {
+    pub fn sub(&self, other: &Self) -> Self {
         let num = self.num * other.den - self.den * other.num;
         let den = self.den * other.den;
 
@@ -217,6 +217,8 @@ mod test {
         println!("1/2={}", frac.normalize()); // 1/2
 
         let rev_frac = frac.reverse().unwrap(); // Use of moved value: `frac`
-        println!("2={}", rev_frac)
+        println!("2={}", rev_frac);
+
+        println!("{}". )
     }
 }
