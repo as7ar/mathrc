@@ -19,8 +19,8 @@
 //! ```rust
 //! use mathrc::{Vector2d, VectorOps};
 //!
-//! let v = Vector2d::new(3.0, 4.0);
-//! let normalized = v.normalize().unwrap();
+//! let v: Vector2d<f64> = Vector2d::new(3.0, 4.0);
+//! let normalized: Vector2d<f64> = v.normalize().unwrap();
 //!
 //! assert!((normalized.magnitude() - 1.0).abs() < 1e-10);
 //! ```
