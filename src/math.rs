@@ -1,6 +1,3 @@
-use num_bigint::BigUint;
-use num_traits::One;
-
 //! Mathematical constants and utility functions.
 //!
 //! This module provides commonly used mathematical constants and
@@ -23,6 +20,9 @@ use num_traits::One;
 //! let circumference = 2.0 * Math::PI * 5.0;
 //! assert!(circumference > 31.0);
 //! ```
+
+use num_bigint::BigUint;
+use num_traits::One;
 
 /// Mathematical utility type.
 ///
