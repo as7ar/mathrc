@@ -22,12 +22,15 @@ impl<T: Float> Vector2d<T> {
     }
 }
 
-impl<T> VectorOps<T> for Vector2d<T> where T: Float + Sum<T> {
+impl<T> VectorOps<T> for Vector2d<T>
+where
+    T: Float + Sum<T>,
+{
     fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         Ok(self.x * other.x + self.y * other.y)
     }
 
-    fn len(&self) -> T {
+    fn magnitude(&self) -> T {
         (self.x * self.x + self.y * self.y).sqrt()
     }
 

@@ -5,29 +5,103 @@ use std::fmt;
 use std::iter::Sum;
 use std::ops::{Add, Index, IndexMut, Mul, Neg, Sub};
 
+/// Common vector operations.
+///
+/// This trait provides fundamental vector operations such as
+/// dot product, magnitude calculation, and normalization.
+///
+/// # Type Parameters
+///
+/// * `T` - Numeric type implementing [`Float`].
 pub trait VectorOps<T>
 where
     T: Float + Sum<T>,
 {
+    /// Computes the dot product of two vectors.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::DimensionMismatch`] if the vectors
+    /// have different dimensions.
     fn dot(&self, other: &Self) -> Result<T, VectorErr>
     where
         Self: Sized;
-    fn len(&self) -> T;
+
+    /// Returns the magnitude (Euclidean norm) of the vector.
+    fn magnitude(&self) -> T;
+
+    /// Returns a normalized version of the vector.
+    ///
+    /// The resulting vector has a magnitude of `1`.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::ZeroVector`] if the vector has zero length.
     fn normalize(&self) -> Result<Self, VectorErr>
     where
         Self: Sized;
 }
 
+/// A generic mathematical vector.
+///
+/// Elements are stored in a dynamic array and may represent
+/// vectors of any dimension.
+///
+/// # Type Parameters
+///
+/// * `T` - Numeric type implementing [`Float`].
+///
+/// # Examples
+///
+/// ```rust
+/// use mathrc::Vector;
+///
+/// let vector = Vector::new(vec![1.0, 2.0, 3.0]);
+///
+/// assert_eq!(vector[0], 1.0);
+/// ```
 #[derive(Debug, Clone, PartialEq)]
 pub struct Vector<T: Float> {
     vec: Vec<T>,
 }
 
 impl<T: Float> Vector<T> {
+    /// Creates a new vector.
+    ///
+    /// # Arguments
+    ///
+    /// * `vec` - Components of the vector.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use mathrc::Vector;
+    ///
+    /// let vector = Vector::new(vec![1.0, 2.0, 3.0]);
+    /// ```
     pub fn new(vec: Vec<T>) -> Self {
         Self { vec }
     }
 
+    /// Computes the cross product of two three-dimensional vectors.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::DimensionMismatch`] if either vector
+    /// does not have exactly three dimensions.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use mathrc::Vector;
+    ///
+    /// let a = Vector::new(vec![1.0, 0.0, 0.0]);
+    /// let b = Vector::new(vec![0.0, 1.0, 0.0]);
+    ///
+    /// let c = a.cross(&b).unwrap();
+    ///
+    /// assert_eq!(c, Vector::new(vec![0.0, 0.0, 1.0]));
+    /// ```
     pub fn cross(&self, other: &Self) -> Result<Self, VectorErr> {
         if self.vec.len() != 3 || other.vec.len() != 3 {
             return Err(VectorErr::DimensionMismatch);
@@ -43,6 +117,12 @@ impl<T: Float> Vector<T> {
 }
 
 impl<T: Float + Sum> VectorOps<T> for Vector<T> {
+    /// Computes the dot product of two vectors.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::DimensionMismatch`] if the vectors
+    /// have different dimensions.
     fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
@@ -50,10 +130,22 @@ impl<T: Float + Sum> VectorOps<T> for Vector<T> {
         Ok(self.vec.iter().zip(&other.vec).map(|(a, b)| *a * *b).sum())
     }
 
-    fn len(&self) -> T {
+    /// Returns the magnitude (Euclidean norm) of the vector.
+    ///
+    /// The magnitude is calculated as:
+    ///
+    /// ```text
+    /// √(x₁² + x₂² + ... + xₙ²)
+    /// ```
+    fn magnitude(&self) -> T {
         self.vec.iter().map(|x| *x * *x).sum::<T>().sqrt()
     }
 
+    /// Returns a unit vector in the same direction.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::ZeroVector`] if the vector length is zero.
     fn normalize(&self) -> Result<Self, VectorErr> {
         let len = self.len();
         if len == T::zero() {
@@ -67,6 +159,13 @@ impl<T: Float + Sum> VectorOps<T> for Vector<T> {
 
 impl<T: Float> Add for Vector<T> {
     type Output = Result<Self, VectorErr>;
+
+    /// Performs vector addition.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::DimensionMismatch`] if the vectors
+    /// have different dimensions.
     fn add(self, other: Self) -> Result<Self, VectorErr> {
         if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
@@ -84,6 +183,13 @@ impl<T: Float> Add for Vector<T> {
 
 impl<T: Float> Sub for Vector<T> {
     type Output = Result<Self, VectorErr>;
+
+    /// Performs vector subtraction.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`VectorErr::DimensionMismatch`] if the vectors
+    /// have different dimensions.
     fn sub(self, other: Self) -> Result<Self, VectorErr> {
         if self.vec.len() != other.vec.len() {
             return Err(VectorErr::DimensionMismatch);
@@ -101,6 +207,20 @@ impl<T: Float> Sub for Vector<T> {
 
 impl<T: Float> Mul<T> for Vector<T> {
     type Output = Self;
+
+    /// Multiplies the vector by a scalar.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use mathrc::Vector;
+    ///
+    /// let v = Vector::new(vec![1.0, 2.0, 3.0]);
+    ///
+    /// let result = v * 2.0;
+    ///
+    /// assert_eq!(result, Vector::new(vec![2.0, 4.0, 6.0]));
+    /// ```
     fn mul(self, scalar: T) -> Self {
         Self {
             vec: self.vec.iter().map(|x| *x * scalar).collect(),
@@ -110,6 +230,18 @@ impl<T: Float> Mul<T> for Vector<T> {
 
 impl<T: Float> Neg for Vector<T> {
     type Output = Self;
+
+    /// Returns the additive inverse of the vector.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use mathrc::Vector;
+    ///
+    /// let v = Vector::new(vec![1.0, -2.0]);
+    ///
+    /// assert_eq!(-v, Vector::new(vec![-1.0, 2.0]));
+    /// ```
     fn neg(self) -> Self {
         Self {
             vec: self.vec.iter().map(|x| -*x).collect(),
@@ -119,12 +251,15 @@ impl<T: Float> Neg for Vector<T> {
 
 impl<T: Float> Index<usize> for Vector<T> {
     type Output = T;
+
+    /// Returns an immutable reference to a vector component.
     fn index(&self, index: usize) -> &T {
         &self.vec[index]
     }
 }
 
 impl<T: Float> IndexMut<usize> for Vector<T> {
+    /// Returns a mutable reference to a vector component.
     fn index_mut(&mut self, index: usize) -> &mut T {
         &mut self.vec[index]
     }

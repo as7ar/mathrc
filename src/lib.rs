@@ -1,3 +1,4 @@
+/// MathRC
 extern crate core;
 
 pub mod err;

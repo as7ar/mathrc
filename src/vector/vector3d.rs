@@ -1,9 +1,9 @@
+use num_traits::Float;
+use std::iter::Sum;
 use std::{
     fmt,
     ops::{Add, Mul, Neg, Sub},
 };
-use std::iter::Sum;
-use num_traits::Float;
 
 use crate::{
     err::VectorErr,
@@ -27,12 +27,15 @@ impl<T: Float> Vector3d<T> {
     }
 }
 
-impl<T> VectorOps<T> for Vector3d<T> where T: Float + Sum<T> {
+impl<T> VectorOps<T> for Vector3d<T>
+where
+    T: Float + Sum<T>,
+{
     fn dot(&self, other: &Self) -> Result<T, VectorErr> {
         Ok(self.x * other.x + self.y + other.y + self.z + other.z)
     }
 
-    fn len(&self) -> T {
+    fn magnitude(&self) -> T {
         (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
     }
 
