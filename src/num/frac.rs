@@ -219,6 +219,6 @@ mod test {
         let rev_frac = frac.reverse().unwrap(); // Use of moved value: `frac`
         println!("2={}", rev_frac);
 
-        println!("{}". )
+        println!("frac+rev_frac= {}", frac.add(&rev_frac))
     }
 }
